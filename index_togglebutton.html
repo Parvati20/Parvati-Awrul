@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Toggle Button</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        #name {
+            margin-top: 20px;
+            font-size: 2em;
+            visibility: hidden; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleButton">OFF</button>
+    <div id="name">Jaya Kumawat</div>
+
+    <script>
+        const button = document.getElementById('toggleButton');
+        const nameDiv = document.getElementById('name');
+
+        button.addEventListener('click', () => {
+            if (button.textContent === 'OFF') {
+                button.textContent = 'ON';
+                nameDiv.style.visibility = 'visible'; // Show name
+            } else {
+                button.textContent = 'OFF';
+                nameDiv.style.visibility = 'hidden'; // Hide name
+            }
+        });
+    </script>
+</body>
+</html>

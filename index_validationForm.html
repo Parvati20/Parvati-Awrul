@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form</title>
+    <style>
+        .error { color: red; }
+        .valid { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Validation Form</h1>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <span class="error" id="nameError"></span>
+        <br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+        <span class="error" id="ageError"></span>
+        <br><br>
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" required>
+        <span class="error" id="emailError"></span>
+        <br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" required></textarea>
+        <span class="error" id="addressError"></span>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(error => error.textContent = '');
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+
+            let valid = true;
+
+            // Validate Name: only letters
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (!namePattern.test(name)) {
+                document.getElementById('nameError').textContent = 'Error: Name should contain only letters.';
+                valid = false;
+            }
+
+            // Validate Age: must be a number between 1 and 120
+            if (age < 1 || age > 120) {
+                document.getElementById('ageError').textContent = 'Error: Age must be between 1 and 120.';
+                valid = false;
+            }
+
+            // Validate Email: basic pattern
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Error: Invalid email format.';
+                valid = false;
+            }
+
+            // Validate Address: not empty
+            if (address.trim() === '') {
+                document.getElementById('addressError').textContent = 'Error: Address cannot be empty.';
+                valid = false;
+            }
+
+            // If all validations pass
+            if (valid) {
+                alert('Form submitted successfully!');
+                // Here you can proceed with form submission (e.g., send data to server)
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetch Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <!-- using cdnjs website for adding axios library -->
+</head>
+<body>
+    <script>
+
+        // Axios example
+        const fetchData = () => {
+        axios.get('https://dummyapi.online/api/movies')
+            .then(response => {
+                console.log('Axios data:', response.data);
+            })
+            .catch(error => {
+                console.error('Axios error:', error);
+            });
+    };
+
+    fetchData();
+    </script>
+</body>
+</html>
